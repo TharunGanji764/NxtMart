@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #003f00;
+  color: #ffffff;
+  text-align: center;
+}
+.social-links {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+@media screen and (max-width: 767px) {
+  .footer {
+    display: none;
+  }
+}

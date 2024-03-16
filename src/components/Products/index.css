@@ -1,0 +1,19 @@
+.products-view {
+  display: flex;
+  flex-direction: column;
+}
+.products-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+@media screen and (max-width: 767px) {
+  .category-name {
+    font-size: 14px;
+    align-self: flex-start;
+  }
+  .products-list {
+    margin: 0;
+    justify-content: center;
+  }
+}
