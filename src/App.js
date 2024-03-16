@@ -9,7 +9,19 @@ import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 class App extends Component {
-  state = {cartList: JSON.parse(localStorage.getItem('cartData'))}
+  state = {cartList: []}
+
+  componentDidMount() {
+    const storedData = JSON.parse(localStorage.getItem('cartData'))
+    if (storedData) {
+      this.setState({cartList: storedData})
+    }
+  }
+
+  componentDidUpdate() {
+    const {cartList} = this.state
+    localStorage.setItem('cartData', JSON.stringify(cartList))
+  }
 
   removeAllCartItem = () => {
     this.setState({cartList: []})
@@ -30,7 +42,7 @@ class App extends Component {
   decrementCartItemQuantity = id => {
     const {cartList} = this.state
     const productObject = cartList.find(eachCartItem => eachCartItem.id === id)
-    if (productObject.quantity > 0) {
+    if (productObject.quantity > 1) {
       this.setState(prevState => ({
         cartList: prevState.cartList.map(eachCartItem => {
           if (id === eachCartItem.id) {
@@ -72,9 +84,7 @@ class App extends Component {
       }))
     } else {
       const updatedCartList = [...cartList, product]
-      this.setState({cartList: updatedCartList}, () => {
-        localStorage.setItem('cartData', JSON.stringify(updatedCartList))
-      })
+      this.setState({cartList: updatedCartList})
     }
   }
 
